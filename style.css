@@ -17,8 +17,12 @@ body {
 }
 
 .figure-container {
-	fill: var(--eggplant);
-	stroke: var(--forest-green-traditional);
+	fill: var(--forest-green-traditional);
+	stroke: var(--eggplant);
 	stroke-width: 0.3rem;
 	stroke-linecap: round;
+}
+
+.figure-part {
+	display: none;
 }
