@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Syne+Mono&display=swap");
+
 :root {
 	--blue-sapphire: hsla(197, 93%, 29%, 1);
 	--eggplant: hsla(321, 13%, 15%, 1);
@@ -12,8 +14,35 @@
 }
 
 body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 80vh;
+	margin: 0;
 	background: var(--mountain-meadow);
+	font-family: "Syne Mono";
 	color: var(--eggplant);
+	overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Comfortaa";
+}
+
+.game-container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 25rem;
+	min-width: 30rem;
+	padding: 1rem 2rem;
+	/* background: var(--blue-sapphire); */
 }
 
 .figure-container {
@@ -25,4 +54,37 @@ body {
 
 .figure-part {
 	display: none;
+}
+
+.incorrect-letters-container {
+	align-self: center;
+	justify-self: flex-end;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.incorrect-letters-container p {
+	font-size: 1.8rem;
+	margin: 0.5rem 0;
+}
+
+.word {
+	position: absolute;
+	bottom: 1rem;
+	left: 50%;
+	display: flex;
+	transform: translateX(-50%);
+}
+
+.letter {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 3rem;
+	width: 1rem;
+	margin: 0 0.3rem;
+
+	border-bottom: 0.2rem solid var(--blue-sapphire);
+	font-size: 1.4rem;
 }
