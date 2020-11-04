@@ -1,0 +1,24 @@
+:root {
+	--blue-sapphire: hsla(197, 93%, 29%, 1);
+	--eggplant: hsla(321, 13%, 15%, 1);
+	--forest-green-traditional: hsla(91, 52%, 16%, 1);
+	--mountain-meadow: hsla(167, 98%, 39%, 1);
+	--pale-spring-bud: hsla(63, 69%, 85%, 1);
+	--azure-x-11-web-color: hsla(185, 79%, 95%, 1);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--mountain-meadow);
+	color: var(--eggplant);
+}
+
+.figure-container {
+	fill: var(--eggplant);
+	stroke: var(--forest-green-traditional);
+	stroke-width: 0.3rem;
+	stroke-linecap: round;
+}
