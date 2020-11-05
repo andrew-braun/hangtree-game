@@ -3,10 +3,14 @@
 :root {
 	--primary-bg: hsla(167, 98%, 39%, 1);
 	--secondary-bg: hsla(321, 13%, 15%, 1);
+	--secondary-bg-transparent: hsla(321, 13%, 15%, 0.5);
 	--primary-text: hsla(321, 13%, 15%, 1);
 	--secondary-text: hsla(185, 79%, 95%, 1);
 
 	--accent-1: hsla(197, 93%, 29%, 1);
+	--accent-2: hsla(63, 69%, 85%, 1);
+
+	--button-bg-light: hsla(185, 79%, 95%, 1);
 	--forest-green-traditional: hsla(91, 52%, 16%, 1);
 	--pale-spring-bud: hsla(63, 69%, 85%, 1);
 }
@@ -16,6 +20,7 @@
 }
 
 body {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -38,7 +43,7 @@ h6 {
 
 button {
 	padding: 0.7rem 1rem;
-	background: var(--white);
+	background: var(--button-bg-light);
 	border: 0;
 	border-radius: 1rem;
 	font-size: 1.2rem;
@@ -53,6 +58,10 @@ button:hover {
 	cursor: pointer;
 	text-decoration: underline;
 	transform: scale(1.05);
+}
+
+button:active {
+	transform: scale(0.98);
 }
 
 .game-container {
@@ -112,25 +121,55 @@ button:hover {
 /* Notifications */
 
 .popup-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
 	display: none;
-	/* display: flex; */
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	min-width: 20rem;
-	max-width: 40vw;
-	padding: 1rem;
-	border-radius: 1rem;
-	background: var(--secondary-bg);
+	background: var(--secondary-bg-transparent);
 	font-size: 1.5rem;
 	color: var(--secondary-text);
 }
 
-.popup-container button {
-	min-width: 60%;
-	max-width: 80%;
+.popup {
+	min-width: 20rem;
+	max-width: 30rem;
+	min-height: 15rem;
+	max-height: 20rem;
+	padding: 2rem;
+	border: 1px solid var(--accent-2);
+	border-radius: 1rem;
+	text-align: center;
+	background: var(--accent-1);
+}
+
+.popup button {
+	min-width: 70%;
+	max-width: 90%;
 }
 
 .notification-container {
-	background: var(--secondary-bg);
+	position: absolute;
+
+	bottom: -40%;
+
+	padding: 1rem;
+	border-radius: 1rem;
+	background: var(--secondary-bg-transparent);
+	font-size: 1.2rem;
+	text-align: center;
 	color: var(--secondary-text);
+	transition: transform 0.3s ease-in-out;
+}
+
+.notification-container p {
+	margin: 0;
+}
+.notification-container.show {
+	transform: translateY(-150%);
 }
