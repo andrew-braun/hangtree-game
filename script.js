@@ -27,7 +27,7 @@ let state = {
 	correctLetters: [],
 };
 
-// state.lettersToGuess = new Set("hi"),
+/* Set blank state on game restart */
 const resetGame = () => {
 	state.answer = words[Math.floor(Math.random() * 10)];
 	state.guessedLetters = [];
@@ -36,23 +36,35 @@ const resetGame = () => {
 	setWord(state.answer, state.guessedLetters);
 };
 
-/* Choose random word */
+/* Choose random word and populate the correct number of characters */
 const setWord = (word, letterArray) => {
+	// Reset innerHTML
 	wordElement.innerHTML = "";
+
+	// Map letters from answer to DOM elements
 	const letters = word.split("").map((letter) => {
+		// Create new div for letter
 		const letterDiv = document.createElement("div");
 		letterDiv.classList.add("letter");
+
+		// Check whether user has guessed a correct letter
 		if (letterArray.includes(letter)) {
 			letterDiv.innerHTML = letter;
-			state.correctLetters.push(letter);
 		} else {
 			letterDiv.innerHTML = "";
 		}
+
+		// Add letter to guess
 		wordElement.appendChild(letterDiv);
 	});
+	checkForWin();
+};
+
+const checkForWin = () => {
+	console.log(new Set(state.answer), new Set(state.correctLetters));
 	if (
 		state.correctLetters.length !== 0 &&
-		equalSets(new Set(word), new Set(state.correctLetters))
+		equalSets(new Set(state.answer), new Set(state.correctLetters))
 	) {
 		popup.style.display = "flex";
 	}
@@ -75,7 +87,11 @@ const handleKeyDown = (event) => {
 		}, 750);
 	} else {
 		state.guessedLetters.push(event.key);
+		if (state.answer.includes(event.key)) {
+			state.correctLetters.push(event.key);
+		}
 		setWord(state.answer, state.guessedLetters);
+		// Record as correct letter in state
 	}
 };
 
