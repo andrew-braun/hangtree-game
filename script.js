@@ -27,15 +27,6 @@ let state = {
 	correctLetters: [],
 };
 
-/* Set blank state on game restart */
-const resetGame = () => {
-	state.answer = words[Math.floor(Math.random() * 10)];
-	state.guessedLetters = [];
-	state.correctLetters = [];
-	popup.style.display = "none";
-	setWord(state.answer, state.guessedLetters);
-};
-
 /* Choose random word and populate the correct number of characters */
 const setWord = (word, letterArray) => {
 	// Reset innerHTML
@@ -60,6 +51,7 @@ const setWord = (word, letterArray) => {
 	checkForWin();
 };
 
+// Check current correctLetters against answer
 const checkForWin = () => {
 	console.log(new Set(state.answer), new Set(state.correctLetters));
 	if (
@@ -70,9 +62,20 @@ const checkForWin = () => {
 	}
 };
 
+// Set initial word at start
 setWord(state.answer, state.guessedLetters);
 
+/* Set blank state on game restart */
+const resetGame = () => {
+	state.answer = words[Math.floor(Math.random() * 10)];
+	state.guessedLetters = [];
+	state.correctLetters = [];
+	popup.style.display = "none";
+	setWord(state.answer, state.guessedLetters);
+};
+
 const handleKeyDown = (event) => {
+	// Check that letter is alphabetic
 	if (!/^[a-zA-Z]{1}$/.test(event.key)) {
 		errorContainer.classList.toggle("show");
 		setTimeout(() => {
@@ -80,21 +83,28 @@ const handleKeyDown = (event) => {
 		}, 750);
 		return null;
 	}
+	// Chekc if letter has already been guessed
 	if (state.guessedLetters.includes(event.key)) {
+		// If so, show notification
 		notificationContainer.classList.toggle("show");
 		setTimeout(() => {
 			notificationContainer.classList.toggle("show");
 		}, 750);
+		return null;
 	} else {
+		// Add to list of guessed letters
 		state.guessedLetters.push(event.key);
+		// If correct, add to correctLetters
 		if (state.answer.includes(event.key)) {
 			state.correctLetters.push(event.key);
 		}
+		// Update word on page
 		setWord(state.answer, state.guessedLetters);
 		// Record as correct letter in state
 	}
 };
 
+// Check if
 const equalSets = (set1, set2) => {
 	return (
 		set1.size === set2.size &&
