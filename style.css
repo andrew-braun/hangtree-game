@@ -153,7 +153,8 @@ button:active {
 	max-width: 90%;
 }
 
-.notification-container {
+.notification-container,
+.error-container {
 	position: absolute;
 
 	bottom: -40%;
@@ -167,9 +168,11 @@ button:active {
 	transition: transform 0.3s ease-in-out;
 }
 
-.notification-container p {
+.notification-container p,
+.error-container p {
 	margin: 0;
 }
-.notification-container.show {
+.notification-container.show,
+.error-container.show {
 	transform: translateY(-150%);
 }
