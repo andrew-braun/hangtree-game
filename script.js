@@ -64,6 +64,20 @@ const setIncorrectLetters = () => {
 				)
 				.join("")}
 			`;
+	addStrokes();
+	checkForLoss();
+};
+
+// Add strokes
+const addStrokes = () => {
+	figureParts.forEach((part, index) => {
+		const incorrectCount = incorrectLetters.length;
+		if (index < incorrectCount) {
+			part.style.display = "block";
+		} else {
+			part.style.display = "none";
+		}
+	});
 };
 
 /* Function to check if two sets are equal 
@@ -117,6 +131,14 @@ const checkForWin = () => {
 		correctLetters.length !== 0 &&
 		equalSets(new Set(answer), new Set(correctLetters))
 	) {
+		winMessage.innerText = "Victory!";
+		popup.style.display = "flex";
+	}
+};
+
+const checkForLoss = () => {
+	if (incorrectLetters.length === figureParts.length) {
+		winMessage.innerText = "Defeat!";
 		popup.style.display = "flex";
 	}
 };
@@ -128,6 +150,7 @@ const resetGame = () => {
 	correctLetters = [];
 	incorrectLetters = [];
 	popup.style.display = "none";
+	figureParts.forEach((part) => (part.style.display = "none"));
 	setWord();
 	setIncorrectLetters();
 };
