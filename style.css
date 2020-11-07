@@ -86,10 +86,11 @@ button:active {
 }
 
 .incorrect-letters-container {
-	align-self: center;
+	align-self: flex-start;
 	justify-self: flex-end;
 	display: flex;
 	flex-direction: column;
+	max-width: 50%;
 	text-align: center;
 }
 

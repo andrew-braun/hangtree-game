@@ -48,6 +48,24 @@ const setWord = () => {
 	checkForWin();
 };
 
+const setIncorrectLetters = () => {
+	// Reset innerHTML
+	incorrectLettersElement.innerHTML = "";
+
+	// Map letters from answer to DOM elements
+	incorrectLettersElement.innerHTML = `
+			${incorrectLetters
+				.map(
+					(letter) => `
+					<span class="letter">
+						${letter}
+					</span>
+					`
+				)
+				.join("")}
+			`;
+};
+
 /* Function to check if two sets are equal 
 Used in checkForWin function */
 const equalSets = (set1, set2) => {
@@ -86,7 +104,11 @@ const updateLetters = (letter) => {
 		correctLetters.push(letter);
 	} else if (!correctLetter) {
 		incorrectLetters.push(letter);
+		setIncorrectLetters();
 	}
+
+	// Update word on page
+	setWord();
 };
 
 // Check current correctLetters against answer
@@ -104,8 +126,10 @@ const resetGame = () => {
 	answer = words[Math.floor(Math.random() * 10)];
 	guessedLetters = [];
 	correctLetters = [];
+	incorrectLetters = [];
 	popup.style.display = "none";
-	setWord(answer, guessedLetters);
+	setWord();
+	setIncorrectLetters();
 };
 
 const handleKeyDown = (event) => {
@@ -125,8 +149,6 @@ const handleKeyDown = (event) => {
 	} else {
 		// Update the guessed, correct, and incorrect letter lists
 		updateLetters(key);
-		// Update word on page
-		setWord(answer, guessedLetters);
 	}
 };
 
