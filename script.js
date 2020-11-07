@@ -21,57 +21,62 @@ const words = [
 	"magnetism",
 ];
 
-let state = {
-	answer: words[Math.floor(Math.random() * 10)],
-	guessedLetters: [],
-	correctLetters: [],
-};
+let answer = words[Math.floor(Math.random() * words.length)];
+let guessedLetters = [];
+let correctLetters = [];
+let incorrectLetters = [];
 
 /* Choose random word and populate the correct number of characters */
-const setWord = (word, letterArray) => {
+const setWord = () => {
 	// Reset innerHTML
 	wordElement.innerHTML = "";
 
 	// Map letters from answer to DOM elements
-	const letters = word.split("").map((letter) => {
-		// Create new div for letter
-		const letterDiv = document.createElement("div");
-		letterDiv.classList.add("letter");
-
-		// Check whether user has guessed a correct letter
-		if (letterArray.includes(letter)) {
-			letterDiv.innerHTML = letter;
-		} else {
-			letterDiv.innerHTML = "";
-		}
-
-		// Add letter to guess
-		wordElement.appendChild(letterDiv);
-	});
+	wordElement.innerHTML = `
+		${answer
+			.split("")
+			.map(
+				(letter) => `
+				<span class="letter">
+					${correctLetters.includes(letter) ? letter : ""}
+				</span>
+				`
+			)
+			.join("")}
+		`;
 	checkForWin();
+	console.log(wordElement);
+};
+
+// Check if
+const equalSets = (set1, set2) => {
+	return (
+		set1.size === set2.size &&
+		[...set1].every((value) => (set2) => b.has(value))
+	);
 };
 
 // Check current correctLetters against answer
 const checkForWin = () => {
-	console.log(new Set(state.answer), new Set(state.correctLetters));
+	console.log(new Set(answer), new Set(correctLetters));
 	if (
-		state.correctLetters.length !== 0 &&
-		equalSets(new Set(state.answer), new Set(state.correctLetters))
+		correctLetters.length !== 0 &&
+		equalSets(new Set(answer), new Set(correctLetters))
 	) {
 		popup.style.display = "flex";
 	}
 };
 
 // Set initial word at start
-setWord(state.answer, state.guessedLetters);
+setWord();
 
 /* Set blank state on game restart */
 const resetGame = () => {
-	state.answer = words[Math.floor(Math.random() * 10)];
-	state.guessedLetters = [];
-	state.correctLetters = [];
+	answer = words[Math.floor(Math.random() * 10)];
+	guessedLetters = [];
+	correctLetters = [];
 	popup.style.display = "none";
-	setWord(state.answer, state.guessedLetters);
+	setWord(answer, guessedLetters);
 };
 
 const handleKeyDown = (event) => {
@@ -84,7 +89,7 @@ const handleKeyDown = (event) => {
 		return null;
 	}
 	// Chekc if letter has already been guessed
-	if (state.guessedLetters.includes(event.key)) {
+	if (guessedLetters.includes(event.key)) {
 		// If so, show notification
 		notificationContainer.classList.toggle("show");
 		setTimeout(() => {
@@ -93,23 +98,15 @@ const handleKeyDown = (event) => {
 		return null;
 	} else {
 		// Add to list of guessed letters
-		state.guessedLetters.push(event.key);
+		guessedLetters.push(event.key);
 		// If correct, add to correctLetters
-		if (state.answer.includes(event.key)) {
-			state.correctLetters.push(event.key);
+		if (answer.includes(event.key)) {
+			correctLetters.push(event.key);
 		}
 		// Update word on page
-		setWord(state.answer, state.guessedLetters);
+		setWord(answer, guessedLetters);
 		// Record as correct letter in state
 	}
-};
-
-// Check if
-const equalSets = (set1, set2) => {
-	return (
-		set1.size === set2.size &&
-		[...set1].every((value) => (set2) => b.has(value))
-	);
 };
 
 /* Event listeners */
