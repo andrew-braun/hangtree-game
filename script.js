@@ -21,6 +21,7 @@ const words = [
 	"magnetism",
 ];
 
+// Set initial game state
 let answer = words[Math.floor(Math.random() * words.length)];
 let guessedLetters = [];
 let correctLetters = [];
@@ -45,10 +46,10 @@ const setWord = () => {
 			.join("")}
 		`;
 	checkForWin();
-	console.log(wordElement);
 };
 
-// Check if
+/* Function to check if two sets are equal 
+Used in checkForWin function */
 const equalSets = (set1, set2) => {
 	return (
 		set1.size === set2.size &&
@@ -56,9 +57,40 @@ const equalSets = (set1, set2) => {
 	);
 };
 
+/* Displays an error prompting user to 
+choose an alphabetic character */
+const showNonAlphaError = () => {
+	errorContainer.classList.toggle("show");
+	setTimeout(() => {
+		errorContainer.classList.toggle("show");
+	}, 750);
+};
+
+/* Displays an error telling user that they've
+already guessed this letter */
+const showAlreadyGuessedError = () => {
+	notificationContainer.classList.toggle("show");
+	setTimeout(() => {
+		notificationContainer.classList.toggle("show");
+	}, 750);
+};
+
+/* Updates the states of the letter lists */
+const updateLetters = (letter) => {
+	// Add to list of guessed letters
+	guessedLetters.push(letter);
+	// If correct, add to correctLetters; else add to incorrectLetters
+	const correctLetter = answer.includes(letter);
+
+	if (correctLetter) {
+		correctLetters.push(letter);
+	} else if (!correctLetter) {
+		incorrectLetters.push(letter);
+	}
+};
+
 // Check current correctLetters against answer
 const checkForWin = () => {
-	console.log(new Set(answer), new Set(correctLetters));
 	if (
 		correctLetters.length !== 0 &&
 		equalSets(new Set(answer), new Set(correctLetters))
@@ -66,9 +98,6 @@ const checkForWin = () => {
 		popup.style.display = "flex";
 	}
 };
-
-// Set initial word at start
-setWord();
 
 /* Set blank state on game restart */
 const resetGame = () => {
@@ -80,34 +109,29 @@ const resetGame = () => {
 };
 
 const handleKeyDown = (event) => {
+	const key = event.key;
 	// Check that letter is alphabetic
-	if (!/^[a-zA-Z]{1}$/.test(event.key)) {
-		errorContainer.classList.toggle("show");
-		setTimeout(() => {
-			errorContainer.classList.toggle("show");
-		}, 750);
+	if (!/^[a-zA-Z]{1}$/.test(key)) {
+		showNonAlphaError();
+		// Break after error
 		return null;
 	}
-	// Chekc if letter has already been guessed
-	if (guessedLetters.includes(event.key)) {
+	// Check if letter has already been guessed
+	if (guessedLetters.includes(key)) {
 		// If so, show notification
-		notificationContainer.classList.toggle("show");
-		setTimeout(() => {
-			notificationContainer.classList.toggle("show");
-		}, 750);
+		showAlreadyGuessedError();
+		// Break after error
 		return null;
 	} else {
-		// Add to list of guessed letters
-		guessedLetters.push(event.key);
-		// If correct, add to correctLetters
-		if (answer.includes(event.key)) {
-			correctLetters.push(event.key);
-		}
+		// Update the guessed, correct, and incorrect letter lists
+		updateLetters(key);
 		// Update word on page
 		setWord(answer, guessedLetters);
-		// Record as correct letter in state
 	}
 };
+
+// Set initial word at start
+setWord();
 
 /* Event listeners */
 
