@@ -1,4 +1,4 @@
-# Landing Page with Responsive Menu and Modal
+# Hangtree Game
 
 A learning project focusing on using JavaScript to create a sliding menu and a modal that fades in/out. Uses a simple profile/portfolio page as a base. Based on a project from [Brad Traversy's Vanilla JavaScript course](https://www.udemy.com/course/web-projects-with-vanilla-javascript/learn/lecture/17842130#questions).
 
