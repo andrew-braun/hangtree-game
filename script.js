@@ -8,6 +8,21 @@ const playAgainButton = document.querySelector("#play-again-button");
 
 const figureParts = document.querySelectorAll(".figure-part");
 
+// Get words from WordsAPI
+
+async function fetchWord() {
+	const response = await fetch(
+		`https://shadow-rain-api-proxy.herokuapp.com/words/?lettersMax=10&partOfSpeech=noun&letterPattern=&^[A-Za-z]+$&random=true`
+	);
+	const data = await response.json();
+	const word = await data.word;
+	// console.log(data);
+	// console.log(word);
+	return word;
+}
+
+// console.log(test);
+
 const words = [
 	"vulpine",
 	"nordic",
@@ -22,10 +37,15 @@ const words = [
 ];
 
 // Set initial game state
-let answer = words[Math.floor(Math.random() * words.length)];
+
+let answer = "history";
+let answer2 = "";
 let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
+
+fetchWord().then((word) => (answer2 = word));
+console.log(answer2);
 
 /* Choose random word and populate the correct number of characters */
 const setWord = () => {
