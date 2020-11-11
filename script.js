@@ -10,45 +10,35 @@ const figureParts = document.querySelectorAll(".figure-part");
 
 // Get words from WordsAPI
 
-async function fetchWord() {
+async function setUp() {
+	// Fetch random word from API
 	const response = await fetch(
 		`https://shadow-rain-api-proxy.herokuapp.com/words/?lettersMax=10&partOfSpeech=noun&letterPattern=&^[A-Za-z]+$&random=true`
 	);
 	const data = await response.json();
 	const word = await data.word;
-	// console.log(data);
-	// console.log(word);
+
+	// Set the answer variable to the word
+	await setAnswer(word);
+
+	// Set up the word in the DOM
+	await setWord();
 	return word;
 }
 
-// console.log(test);
-
-const words = [
-	"vulpine",
-	"nordic",
-	"translucent",
-	"indefatigable",
-	"curry",
-	"love",
-	"pasta",
-	"veranda",
-	"aquatic",
-	"magnetism",
-];
-
 // Set initial game state
 
-let answer = "history";
-let answer2 = "";
+let answer = "";
 let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
 
-fetchWord().then((word) => (answer2 = word));
-console.log(answer2);
+function setAnswer(word) {
+	answer = word;
+}
 
 /* Choose random word and populate the correct number of characters */
-const setWord = () => {
+function setWord() {
 	// Reset innerHTML
 	wordElement.innerHTML = "";
 
@@ -66,7 +56,7 @@ const setWord = () => {
 			.join("")}
 		`;
 	checkForWin();
-};
+}
 
 const setIncorrectLetters = () => {
 	// Reset innerHTML
@@ -165,13 +155,13 @@ const checkForLoss = () => {
 
 /* Set blank state on game restart */
 const resetGame = () => {
-	answer = words[Math.floor(Math.random() * 10)];
+	answer = "";
 	guessedLetters = [];
 	correctLetters = [];
 	incorrectLetters = [];
 	popup.style.display = "none";
 	figureParts.forEach((part) => (part.style.display = "none"));
-	setWord();
+	setUp();
 	setIncorrectLetters();
 };
 
@@ -196,7 +186,7 @@ const handleKeyDown = (event) => {
 };
 
 // Set initial word at start
-setWord();
+setUp();
 
 /* Event listeners */
 
