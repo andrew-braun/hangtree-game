@@ -23,21 +23,22 @@ async function setUp() {
 
 	// Set up the word in the DOM
 	await setWord();
+
 	return word;
 }
 
 // Set initial game state
-
 let answer = "";
 let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
 
+/* Set answer variable to word from async fetch request */
 function setAnswer(word) {
 	answer = word;
 }
 
-/* Choose random word and populate the correct number of characters */
+/* Set the word in the DOM based on guesses so far */
 function setWord() {
 	// Reset innerHTML
 	wordElement.innerHTML = "";
@@ -55,9 +56,12 @@ function setWord() {
 			)
 			.join("")}
 		`;
+
+	// Check to see if rendered word is a win
 	checkForWin();
 }
 
+// Update the incorrect guesses in the DOM
 const setIncorrectLetters = () => {
 	// Reset innerHTML
 	incorrectLettersElement.innerHTML = "";
@@ -78,6 +82,44 @@ const setIncorrectLetters = () => {
 	checkForLoss();
 };
 
+/* Update the states of the letter lists */
+const updateLetters = (letter) => {
+	// Add to list of guessed letters
+	guessedLetters.push(letter);
+
+	// If correct, add to correctLetters; else add to incorrectLetters
+	const correctLetter = answer.includes(letter);
+
+	if (correctLetter) {
+		correctLetters.push(letter);
+	} else if (!correctLetter) {
+		incorrectLetters.push(letter);
+		setIncorrectLetters();
+	}
+
+	// Update word on page
+	setWord();
+};
+
+/* Check for win condition: all letters in answer also in correctLetters */
+const checkForWin = () => {
+	if (
+		correctLetters.length !== 0 &&
+		equalSets(new Set(answer), new Set(correctLetters))
+	) {
+		winMessage.innerText = "Victory!";
+		popup.style.display = "flex";
+	}
+};
+
+/* Check for loss condition: incorrectLetters = numOfStrokes */
+const checkForLoss = () => {
+	if (incorrectLetters.length === figureParts.length) {
+		winMessage.innerText = "Defeat!";
+		popup.style.display = "flex";
+	}
+};
+
 // Add strokes
 const addStrokes = () => {
 	figureParts.forEach((part, index) => {
@@ -88,6 +130,18 @@ const addStrokes = () => {
 			part.style.display = "none";
 		}
 	});
+};
+
+/* Set blank state on game restart */
+const resetGame = () => {
+	answer = "";
+	guessedLetters = [];
+	correctLetters = [];
+	incorrectLetters = [];
+	popup.style.display = "none";
+	figureParts.forEach((part) => (part.style.display = "none"));
+	setUp();
+	setIncorrectLetters();
 };
 
 /* Function to check if two sets are equal 
@@ -115,54 +169,6 @@ const showAlreadyGuessedError = () => {
 	setTimeout(() => {
 		notificationContainer.classList.toggle("show");
 	}, 750);
-};
-
-/* Updates the states of the letter lists */
-const updateLetters = (letter) => {
-	// Add to list of guessed letters
-	guessedLetters.push(letter);
-	// If correct, add to correctLetters; else add to incorrectLetters
-	const correctLetter = answer.includes(letter);
-
-	if (correctLetter) {
-		correctLetters.push(letter);
-	} else if (!correctLetter) {
-		incorrectLetters.push(letter);
-		setIncorrectLetters();
-	}
-
-	// Update word on page
-	setWord();
-};
-
-// Check current correctLetters against answer
-const checkForWin = () => {
-	if (
-		correctLetters.length !== 0 &&
-		equalSets(new Set(answer), new Set(correctLetters))
-	) {
-		winMessage.innerText = "Victory!";
-		popup.style.display = "flex";
-	}
-};
-
-const checkForLoss = () => {
-	if (incorrectLetters.length === figureParts.length) {
-		winMessage.innerText = "Defeat!";
-		popup.style.display = "flex";
-	}
-};
-
-/* Set blank state on game restart */
-const resetGame = () => {
-	answer = "";
-	guessedLetters = [];
-	correctLetters = [];
-	incorrectLetters = [];
-	popup.style.display = "none";
-	figureParts.forEach((part) => (part.style.display = "none"));
-	setUp();
-	setIncorrectLetters();
 };
 
 const handleKeyDown = (event) => {
