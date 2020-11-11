@@ -2,6 +2,8 @@
 
 A learning project focusing on using JavaScript to create a sliding menu and a modal that fades in/out. Uses a simple profile/portfolio page as a base. Based on a project from [Brad Traversy's Vanilla JavaScript course](https://www.udemy.com/course/web-projects-with-vanilla-javascript/learn/lecture/17842130#questions).
 
+Uses WordsAPI to request random words, obscuring API key by making request through a Heroku proxy server that contains the key as an environment variable.
+
 ### Link to project
 
 https://andrew-braun.github.io/hangtree-game/
@@ -21,12 +23,14 @@ https://andrew-braun.github.io/hangtree-game/
 - SVG creation
 - Helper functions
 - Checking inputs
+- API calls and key obfuscation
 
 ## Technologies
 
 - HTML5
 - CSS3
 - Vanilla JS
+- Heroku
 
 ## Planned Features
 
@@ -38,3 +42,4 @@ https://andrew-braun.github.io/hangtree-game/
 - "Guesses left" counter
 - Animations
 - Play again responds to enter key press
+- Make sure words are commonly-used/easy
