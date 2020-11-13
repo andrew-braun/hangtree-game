@@ -119,6 +119,17 @@ button:active {
 	font-size: 1.4rem;
 }
 
+.non-letter {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 3rem;
+	width: 1rem;
+	margin: 0 0.3rem;
+
+	font-size: 1.4rem;
+}
+
 /* Notifications */
 
 .popup-container {

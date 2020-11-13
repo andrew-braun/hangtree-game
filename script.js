@@ -47,8 +47,10 @@ function setWord() {
 	wordElement.innerHTML = `
 		${answer
 			.split("")
-			.map(
-				(letter) => `
+			.map((letter) =>
+				letter === " " || letter === "-"
+					? `<span class="non-letter"> </span>`
+					: `
 				<span class="letter">
 					${correctLetters.includes(letter) ? letter : ""}
 				</span>
@@ -58,6 +60,7 @@ function setWord() {
 		`;
 
 	// Check to see if rendered word is a win
+	console.log(answer);
 	checkForWin();
 }
 
@@ -172,7 +175,8 @@ const showAlreadyGuessedError = () => {
 };
 
 const handleKeyDown = (event) => {
-	const key = event.key;
+	const key = event.key.toLowerCase();
+
 	// Check that letter is alphabetic
 	if (!/^[a-zA-Z]{1}$/.test(key)) {
 		showNonAlphaError();
