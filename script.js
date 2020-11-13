@@ -59,6 +59,8 @@ function setWord() {
 			.join("")}
 		`;
 
+	checkForLoss();
+
 	// Check to see if rendered word is a win
 	checkForWin();
 }
@@ -117,6 +119,20 @@ const checkForWin = () => {
 /* Check for loss condition: incorrectLetters = numOfStrokes */
 const checkForLoss = () => {
 	if (incorrectLetters.length === figureParts.length) {
+		wordElement.innerHTML = `
+		${answer
+			.split("")
+			.map(
+				(letter) =>
+					`
+					<span class="letter">
+						${letter}
+					</span>
+					`
+			)
+			.join("")}
+		`;
+
 		winMessage.innerText = "Defeat!";
 		popup.style.display = "flex";
 	}
@@ -143,6 +159,7 @@ const resetGame = () => {
 	popup.style.display = "none";
 	figureParts.forEach((part) => (part.style.display = "none"));
 	setUp();
+	setCorrectLetters();
 	setIncorrectLetters();
 };
 
