@@ -60,7 +60,6 @@ function setWord() {
 		`;
 
 	// Check to see if rendered word is a win
-	console.log(answer);
 	checkForWin();
 }
 
