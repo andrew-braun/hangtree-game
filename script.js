@@ -108,7 +108,7 @@ const updateLetters = (letter) => {
 const checkForWin = () => {
 	if (
 		correctLetters.length !== 0 &&
-		equalSets(new Set(answer), new Set(correctLetters))
+		equalSets(new Set(answer.replace(/\s|-/, "")), new Set(correctLetters))
 	) {
 		winMessage.innerText = "Victory!";
 		popup.style.display = "flex";
@@ -180,15 +180,11 @@ const handleKeyDown = (event) => {
 	// Check that letter is alphabetic
 	if (!/^[a-zA-Z]{1}$/.test(key)) {
 		showNonAlphaError();
-		// Break after error
-		return null;
 	}
 	// Check if letter has already been guessed
-	if (guessedLetters.includes(key)) {
+	else if (guessedLetters.includes(key)) {
 		// If so, show notification
 		showAlreadyGuessedError();
-		// Break after error
-		return null;
 	} else {
 		// Update the guessed, correct, and incorrect letter lists
 		updateLetters(key);
