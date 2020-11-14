@@ -151,9 +151,11 @@ const showLoss = () => {
 };
 
 const showWordDefinition = () => {
-	wordDefinition.innerHTML = `${wordData.results
+	wordDefinition.innerHTML = `
+	<div class="final-answer">${answer}</div>
+	${wordData.results
 		.map((item, index) => {
-			return `<div class="final-answer">${answer}</div>
+			return `
 			<div class="definition">${index + 1} (${item.partOfSpeech}): ${
 				item.definition
 			}</div>`;
