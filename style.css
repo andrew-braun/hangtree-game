@@ -149,20 +149,46 @@ button:active {
 }
 
 .popup {
+	display: flex;
+	flex-direction: column;
+	/* flex: 1 0 15rem; */
+	justify-content: space-between;
+	align-items: center;
 	min-width: 20rem;
-	max-width: 30rem;
+	max-width: 80vw;
 	min-height: 15rem;
-	max-height: 20rem;
-	padding: 2rem;
+	max-height: 80vh;
+	padding: 1.2rem;
 	border: 1px solid var(--accent-2);
 	border-radius: 1rem;
 	text-align: center;
 	background: var(--accent-1);
 }
 
+#win-message {
+	font-size: 2.8rem;
+	margin: 0.3rem;
+	padding: 0.3rem;
+	color: var(--accent-2);
+}
+
+#word-definition {
+	overflow-y: auto;
+}
 .popup button {
 	min-width: 70%;
 	max-width: 90%;
+}
+
+.final-answer {
+	font-size: 1.8rem;
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+
+.definition {
+	margin: 0.5rem;
+	font-size: 1rem;
 }
 
 .notification-container,

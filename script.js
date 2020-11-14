@@ -4,6 +4,7 @@ const popup = document.querySelector("#popup-container");
 const notificationContainer = document.querySelector("#notification-container");
 const errorContainer = document.querySelector("#error-container");
 const winMessage = document.querySelector("#win-message");
+const wordDefinition = document.querySelector("#word-definition");
 const playAgainButton = document.querySelector("#play-again-button");
 
 const figureParts = document.querySelectorAll(".figure-part");
@@ -17,6 +18,9 @@ async function setUp() {
 	const data = await response.json();
 	const word = await data.word;
 
+	// Set the word's data
+	wordData = await data;
+
 	// Set the answer variable to the word
 	answer = await word;
 
@@ -25,6 +29,7 @@ async function setUp() {
 }
 
 // Set initial game state
+let wordData = "";
 let answer = "";
 let guessedLetters = [];
 let correctLetters = [];
@@ -96,8 +101,10 @@ const updateLetters = (letter) => {
 const updateGameState = () => {
 	if (checkForWin()) {
 		setWord();
+		showWordDefinition();
 		showWin();
 	} else if (checkForLoss()) {
+		showWordDefinition();
 		showLoss();
 	} else {
 		setWord();
@@ -141,6 +148,15 @@ const showLoss = () => {
 
 	winMessage.innerText = "Defeat!";
 	popup.style.display = "flex";
+};
+
+const showWordDefinition = () => {
+	wordDefinition.innerHTML = `${wordData.results
+		.map((item, index) => {
+			return `<div class="final-answer">${answer}</div>
+			<div class="definition">${index + 1}: ${item.definition}</div>`;
+		})
+		.join(",")}`;
 };
 
 // Add strokes

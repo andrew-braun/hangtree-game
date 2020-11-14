@@ -35,7 +35,7 @@ https://andrew-braun.github.io/hangtree-game/
 ## Planned Features
 
 - Random word API (Done!)
-- Reveal word on defeat
+- Reveal word on defeat (Done!)
 - Show word definition on game end
 - Aesthetic overhaul
 - Better tree
