@@ -154,9 +154,11 @@ const showWordDefinition = () => {
 	wordDefinition.innerHTML = `${wordData.results
 		.map((item, index) => {
 			return `<div class="final-answer">${answer}</div>
-			<div class="definition">${index + 1}: ${item.definition}</div>`;
+			<div class="definition">${index + 1} (${item.partOfSpeech}): ${
+				item.definition
+			}</div>`;
 		})
-		.join(",")}`;
+		.join("")}`;
 };
 
 // Add strokes
