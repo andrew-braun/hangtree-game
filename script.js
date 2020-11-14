@@ -8,8 +8,7 @@ const playAgainButton = document.querySelector("#play-again-button");
 
 const figureParts = document.querySelectorAll(".figure-part");
 
-// Get words from WordsAPI
-
+/* Initial game setup function */
 async function setUp() {
 	// Fetch random word from API
 	const response = await fetch(
@@ -19,7 +18,7 @@ async function setUp() {
 	const word = await data.word;
 
 	// Set the answer variable to the word
-	await setAnswer(word);
+	answer = await word;
 
 	// Set up the word in the DOM
 	await setWord();
@@ -32,11 +31,6 @@ let answer = "";
 let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
-
-/* Set answer variable to word from async fetch request */
-function setAnswer(word) {
-	answer = word;
-}
 
 /* Set the word in the DOM based on guesses so far */
 function setWord() {
