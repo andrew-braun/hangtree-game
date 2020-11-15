@@ -1,6 +1,6 @@
 const wordElement = document.querySelector("#word");
 const incorrectLettersElement = document.querySelector("#incorrect-letters");
-const popup = document.querySelector("#popup-container");
+const popupContainer = document.querySelector("#popup-container");
 const notificationContainer = document.querySelector("#notification-container");
 const errorContainer = document.querySelector("#error-container");
 const winMessage = document.querySelector("#win-message");
@@ -16,8 +16,8 @@ let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
 
-// Track whether end-of-game popup is showing
-let popupIsOpen = false;
+// Track whether end-of-game popupContainer is showing
+let popupContainerIsOpen = false;
 
 /* Initial game setup function */
 async function setUp() {
@@ -105,11 +105,11 @@ const updateGameState = () => {
 		setWord();
 		showWordDefinition();
 		showWin();
-		popupIsOpen = true;
+		popupContainerIsOpen = true;
 	} else if (checkForLoss()) {
 		showWordDefinition();
 		showLoss();
-		popupIsOpen = true;
+		popupContainerIsOpen = true;
 	} else {
 		setWord();
 	}
@@ -125,7 +125,8 @@ const checkForWin = () => {
 
 const showWin = () => {
 	winMessage.innerText = "Victory!";
-	popup.style.display = "flex";
+
+	popupContainer.style.display = "flex";
 };
 
 const checkForLoss = () => {
@@ -149,7 +150,7 @@ const showLoss = () => {
 		`;
 
 	winMessage.innerText = "Defeat!";
-	popup.style.display = "flex";
+	popupContainer.style.display = "flex";
 };
 
 const showWordDefinition = () => {
@@ -183,7 +184,7 @@ const resetGame = () => {
 	guessedLetters = [];
 	correctLetters = [];
 	incorrectLetters = [];
-	popup.style.display = "none";
+	popupContainer.style.display = "none";
 	figureParts.forEach((part) => (part.style.display = "none"));
 	setIncorrectLetters();
 	setUp();
@@ -241,5 +242,5 @@ setUp();
 window.addEventListener("keydown", handleKeyDown);
 playAgainButton.addEventListener("click", resetGame);
 window.addEventListener("keypress", (event) =>
-	popupIsOpen && event.key === "Enter" ? resetGame() : null
+	popupContainerIsOpen && event.key === "Enter" ? resetGame() : null
 );
