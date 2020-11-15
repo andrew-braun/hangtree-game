@@ -9,6 +9,16 @@ const playAgainButton = document.querySelector("#play-again-button");
 
 const figureParts = document.querySelectorAll(".figure-part");
 
+// Set initial game state
+let wordData = "";
+let answer = "";
+let guessedLetters = [];
+let correctLetters = [];
+let incorrectLetters = [];
+
+// Track whether end-of-game popup is showing
+let popupIsOpen = false;
+
 /* Initial game setup function */
 async function setUp() {
 	// Fetch random word from API
@@ -28,16 +38,8 @@ async function setUp() {
 	await setWord();
 }
 
-// Set initial game state
-let wordData = "";
-let answer = "";
-let guessedLetters = [];
-let correctLetters = [];
-let incorrectLetters = [];
-
 /* Set the word in the DOM based on guesses so far */
 function setWord() {
-	console.log("called");
 	// Reset innerHTML
 	wordElement.innerHTML = "";
 
@@ -103,9 +105,11 @@ const updateGameState = () => {
 		setWord();
 		showWordDefinition();
 		showWin();
+		popupIsOpen = true;
 	} else if (checkForLoss()) {
 		showWordDefinition();
 		showLoss();
+		popupIsOpen = true;
 	} else {
 		setWord();
 	}
@@ -125,8 +129,6 @@ const showWin = () => {
 };
 
 const checkForLoss = () => {
-	console.log(incorrectLetters.length);
-	console.log(figureParts.length);
 	return incorrectLetters.length === figureParts.length;
 };
 
@@ -238,3 +240,6 @@ setUp();
 
 window.addEventListener("keydown", handleKeyDown);
 playAgainButton.addEventListener("click", resetGame);
+window.addEventListener("keypress", (event) =>
+	popupIsOpen && event.key === "Enter" ? resetGame() : null
+);
