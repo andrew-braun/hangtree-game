@@ -1,6 +1,7 @@
 const wordElement = document.querySelector("#word");
 const incorrectLettersElement = document.querySelector("#incorrect-letters");
 const popupContainer = document.querySelector("#popup-container");
+const popup = document.querySelector("#popup");
 const notificationContainer = document.querySelector("#notification-container");
 const errorContainer = document.querySelector("#error-container");
 const winMessage = document.querySelector("#win-message");
@@ -184,7 +185,13 @@ const resetGame = () => {
 	guessedLetters = [];
 	correctLetters = [];
 	incorrectLetters = [];
-	popupContainer.style.display = "none";
+	popup.classList.remove("bounceInDown");
+	popup.classList.add("bounceOutDown");
+	popup.addEventListener(
+		"animationend",
+		() => (popupContainer.style.display = "none")
+	);
+
 	figureParts.forEach((part) => (part.style.display = "none"));
 	setIncorrectLetters();
 	setUp();

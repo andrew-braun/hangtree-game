@@ -36,7 +36,7 @@ https://andrew-braun.github.io/hangtree-game/
 
 - Random word API (Done!)
 - Reveal word on defeat (Done!)
-- Show word definition on game end
+- Show word definition on game end (Done!)
 - Aesthetic overhaul
 - Better tree
 - "Guesses left" counter
