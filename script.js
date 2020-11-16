@@ -37,6 +37,9 @@ async function setUp() {
 
 	// Set up the word in the DOM
 	await setWord();
+
+	popup.classList.add("bounceInDown");
+	popup.classList.remove("bounceOutDown");
 }
 
 /* Set the word in the DOM based on guesses so far */
@@ -187,11 +190,7 @@ const resetGame = () => {
 	incorrectLetters = [];
 	popup.classList.remove("bounceInDown");
 	popup.classList.add("bounceOutDown");
-	popup.addEventListener(
-		"animationend",
-		() => (popupContainer.style.display = "none")
-	);
-
+	setTimeout(() => (popupContainer.style.display = "none"), 500);
 	figureParts.forEach((part) => (part.style.display = "none"));
 	setIncorrectLetters();
 	setUp();
