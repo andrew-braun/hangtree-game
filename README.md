@@ -40,6 +40,6 @@ https://andrew-braun.github.io/hangtree-game/
 - Aesthetic overhaul
 - Better tree
 - "Guesses left" counter
-- Animations
-- Play again responds to enter key press
+- Animations (Added: popup)
+- Play again responds to enter key press (Done!)
 - Make sure words are commonly-used/easy
