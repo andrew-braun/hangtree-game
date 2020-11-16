@@ -74,11 +74,24 @@ button:active {
 	padding: 1rem 2rem;
 }
 
+.visual-container {
+	text-align: center;
+}
+
 .figure-container {
+	display: flex;
+	justify-content: center;
+	margin: auto;
 	fill: var(--forest-green-traditional);
 	stroke: var(--primary-text);
 	stroke-width: 0.3rem;
 	stroke-linecap: round;
+	text-align: center;
+}
+
+.guesses-left {
+	text-align: center;
+	text-decoration: underline;
 }
 
 .figure-part {

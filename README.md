@@ -39,7 +39,7 @@ https://andrew-braun.github.io/hangtree-game/
 - Show word definition on game end (Done!)
 - Aesthetic overhaul
 - Better tree
-- "Guesses left" counter
+- "Guesses left" counter (Done!)
 - Animations (Added: popup)
 - Play again responds to enter key press (Done!)
 - Make sure words are commonly-used/easy

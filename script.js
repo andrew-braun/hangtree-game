@@ -7,6 +7,7 @@ const errorContainer = document.querySelector("#error-container");
 const winMessage = document.querySelector("#win-message");
 const wordDefinition = document.querySelector("#word-definition");
 const playAgainButton = document.querySelector("#play-again-button");
+const guessesLeftElement = document.querySelector("#guesses-left");
 
 const figureParts = document.querySelectorAll(".figure-part");
 
@@ -16,6 +17,7 @@ let answer = "";
 let guessedLetters = [];
 let correctLetters = [];
 let incorrectLetters = [];
+let guessesLeft = figureParts.length - incorrectLetters.length;
 
 // Track whether end-of-game popupContainer is showing
 let popupContainerIsOpen = false;
@@ -37,6 +39,8 @@ async function setUp() {
 
 	// Set up the word in the DOM
 	await setWord();
+
+	setGuessesLeft();
 
 	popup.classList.add("bounceInDown");
 	popup.classList.remove("bounceOutDown");
@@ -105,6 +109,7 @@ const updateLetters = (letter) => {
 };
 
 const updateGameState = () => {
+	setGuessesLeft();
 	if (checkForWin()) {
 		setWord();
 		showWordDefinition();
@@ -117,6 +122,11 @@ const updateGameState = () => {
 	} else {
 		setWord();
 	}
+};
+
+const setGuessesLeft = () => {
+	guessesLeft = figureParts.length - incorrectLetters.length;
+	guessesLeftElement.innerHTML = `<span style="font-weight: bold; font-size: 1.3rem;">${guessesLeft}</span> guesses remaining`;
 };
 
 /* Check for win condition: all letters in answer also in correctLetters */
