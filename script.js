@@ -56,8 +56,8 @@ function setWord() {
 		${answer
 			.split("")
 			.map((letter) =>
-				letter === " " || letter === "-"
-					? `<span class="non-letter"> </span>`
+				/[^a-zA-Z\d]/.test(letter)
+					? `<span class="non-letter"> ${letter} </span>`
 					: `
 				<span class="letter">
 					${correctLetters.includes(letter) ? letter : ""}
