@@ -126,7 +126,9 @@ const updateGameState = () => {
 
 const setGuessesLeft = () => {
 	guessesLeft = figureParts.length - incorrectLetters.length;
-	guessesLeftElement.innerHTML = `<span style="font-weight: bold; font-size: 1.3rem;">${guessesLeft}</span> guesses remaining`;
+	guessesLeftElement.innerHTML = `<span style="font-weight: bold; font-size: 1.3rem;">${guessesLeft}</span> ${
+		guessesLeft === 1 ? `guess remaining` : `guesses remaining`
+	}`;
 };
 
 /* Check for win condition: all letters in answer also in correctLetters */
