@@ -17,12 +17,6 @@
 	--light-green: hsla(120, 32%, 44%, 1);
 }
 
---phthalo-green: #19381f;
---cyan-process: #5bc0eb;
---eggshell: #f0ebd8;
---tangerine: #ef8a17;
---may-green: #4c934c;
-
 * {
 	box-sizing: border-box;
 }
@@ -92,7 +86,8 @@ button:active {
 .figure-container {
 	display: flex;
 	justify-content: center;
-	margin: auto;
+	margin: 1rem;
+
 	stroke: black;
 	stroke-width: 0.3rem;
 	stroke-linecap: round;
@@ -110,7 +105,7 @@ button:active {
 }
 
 .circle {
-	fill: var(--light-green);
+	fill: var(--accent-1);
 }
 
 .incorrect-letters-container {
