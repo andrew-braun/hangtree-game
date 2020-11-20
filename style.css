@@ -1,19 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Syne+Mono&display=swap");
 
 :root {
-	--primary-bg: hsla(167, 98%, 39%, 1);
-	--secondary-bg: hsla(321, 13%, 15%, 1);
-	--secondary-bg-transparent: hsla(321, 13%, 15%, 0.5);
+	--primary-bg: hsla(198, 78%, 64%, 1);
+	--secondary-bg: hsla(132, 38%, 16%, 1);
+	--secondary-bg-transparent: hsla(132, 38%, 16%, 0.75);
 	--primary-text: hsla(321, 13%, 15%, 1);
 	--secondary-text: hsla(185, 79%, 95%, 1);
 
-	--accent-1: hsla(197, 93%, 29%, 1);
-	--accent-2: hsla(63, 69%, 85%, 1);
+	--accent-1: hsla(32, 87%, 51%, 1);
+	--accent-2: hsla(47, 44%, 89%, 1);
+	--accent-3: hsla(120, 32%, 44%, 1);
 
 	--button-bg-light: hsla(185, 79%, 95%, 1);
-	--forest-green-traditional: hsla(91, 52%, 16%, 1);
-	--pale-spring-bud: hsla(63, 69%, 85%, 1);
+
+	--dark-green: hsla(132, 38%, 16%, 1);
+	--light-green: hsla(120, 32%, 44%, 1);
 }
+
+--phthalo-green: #19381f;
+--cyan-process: #5bc0eb;
+--eggshell: #f0ebd8;
+--tangerine: #ef8a17;
+--may-green: #4c934c;
 
 * {
 	box-sizing: border-box;
@@ -24,12 +32,14 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 80vh;
 	margin: 0;
-	background: var(--primary-bg);
 	font-family: "Syne Mono";
 	color: var(--eggplant);
 	overflow: hidden;
+	background-color: #5bc0eb;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23183b27' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23ef8a17' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23336a30' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23d56f2d' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%235e9a4a' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23da5929' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23a2c06f' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23cf4935' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23d6daa3' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23c03538' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23e8e3d3' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23b53c52' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 h1,
@@ -82,7 +92,7 @@ button:active {
 	display: flex;
 	justify-content: center;
 	margin: auto;
-	fill: var(--forest-green-traditional);
+	fill: var(--);
 	stroke: var(--primary-text);
 	stroke-width: 0.3rem;
 	stroke-linecap: round;
@@ -128,7 +138,7 @@ button:active {
 	width: 1rem;
 	margin: 0 0.3rem;
 
-	border-bottom: 0.2rem solid var(--accent-1);
+	border-bottom: 0.2rem solid var(--accent-2);
 	font-size: 1.4rem;
 }
 
@@ -155,7 +165,7 @@ button:active {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: var(--secondary-bg-transparent);
+	background: hsla(0, 0%, 0%, 0.3);
 	font-size: 1.5rem;
 	color: var(--secondary-text);
 }
@@ -174,7 +184,7 @@ button:active {
 	border: 1px solid var(--accent-2);
 	border-radius: 1rem;
 	text-align: center;
-	background: var(--accent-1);
+	background: var(--secondary-bg-transparent);
 	animation: bounceInDown 0.8s forwards;
 }
 
