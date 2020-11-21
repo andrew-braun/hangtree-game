@@ -52,6 +52,7 @@ async function setUp() {
 		loadingModal.classList.toggle("show-modal");
 		errorModal.classList.toggle("show-modal");
 	}
+	popupContainerIsOpen = false;
 	popup.classList.add("bounceInDown");
 	popup.classList.remove("bounceOutDown");
 }
