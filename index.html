@@ -9,7 +9,7 @@
 	<body>
 		<h1>Hangtree</h1>
 		<p>Guess letters to figure out the word!</p>
-		<div class="game-container">
+		<div class="game-container" id="game-container">
 			<div class="visual-container">
 				<div class="guesses-left" id="guesses-left"></div>
 				<svg class="figure-container" height="300" width="250">
@@ -31,6 +31,18 @@
 					<line x1="140" y1="157" x2="150" y2="160" class="figure-part" />
 					<line x1="140" y1="170" x2="160" y2="167" class="figure-part" />
 				</svg>
+				<div class="loading-modal" id="loading-modal">
+					<img src="rings.svg" class="loading-svg" />
+				</div>
+				<div class="error-modal" id="error-modal">
+					<h2>I just forgot literally every word.</h2>
+					<p>
+						There's a guy who might be able to help me remember, though! Why
+						don't you go
+						<a href="https://andrewbraun.dev">get in touch with him</a>. He'll
+						probably get this fixed super fast!
+					</p>
+				</div>
 			</div>
 
 			<div class="incorrect-letters-container">
@@ -59,6 +71,8 @@
 				<p>Please pick a letter of the alphabet!</p>
 			</div>
 		</div>
+
+		<!-- Loading animation -->
 
 		<script src="script.js"></script>
 	</body>

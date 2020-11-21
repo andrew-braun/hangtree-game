@@ -1,9 +1,12 @@
 const wordElement = document.querySelector("#word");
+const gameContainer = document.querySelector("#game-container");
 const incorrectLettersElement = document.querySelector("#incorrect-letters");
 const popupContainer = document.querySelector("#popup-container");
 const popup = document.querySelector("#popup");
 const notificationContainer = document.querySelector("#notification-container");
 const errorContainer = document.querySelector("#error-container");
+const loadingModal = document.querySelector("#loading-modal");
+const errorModal = document.querySelector("#error-modal");
 const winMessage = document.querySelector("#win-message");
 const wordDefinition = document.querySelector("#word-definition");
 const playAgainButton = document.querySelector("#play-again-button");
@@ -24,24 +27,31 @@ let popupContainerIsOpen = false;
 
 /* Initial game setup function */
 async function setUp() {
+	loadingModal.classList.toggle("show-modal");
 	// Fetch random word from API
-	const response = await fetch(
-		`https://shadow-rain-api-proxy.herokuapp.com/words/?lettersMax=10&partOfSpeech=noun&letterPattern=&^[A-Za-z]+$&random=true`
-	);
-	const data = await response.json();
-	const word = await data.word;
+	try {
+		const response = await fetch(
+			`https://shadow-rain-api-proxy.herokuapp.com/words/?lettersMax=10&partOfSpeech=noun&letterPattern=&^[A-Za-z]+$&random=true`
+		);
+		const data = await response.json();
+		const word = await data.word;
 
-	// Set the word's data
-	wordData = await data;
+		// Set the word's data
+		wordData = await data;
 
-	// Set the answer variable to the word
-	answer = await word;
+		// Set the answer variable to the word
+		answer = await word;
 
-	// Set up the word in the DOM
-	await setWord();
+		// Set up the word in the DOM
+		await setWord();
 
-	setGuessesLeft();
+		setGuessesLeft();
 
+		loadingModal.classList.toggle("show-modal");
+	} catch {
+		loadingModal.classList.toggle("show-modal");
+		errorModal.classList.toggle("show-modal");
+	}
 	popup.classList.add("bounceInDown");
 	popup.classList.remove("bounceOutDown");
 }
