@@ -44,5 +44,5 @@ https://andrew-braun.github.io/hangtree-game/
 - Animations (Added: popup)
 - Play again responds to enter key press (Done!)
 - Make sure words are commonly-used/easy
-- Add loading animation
+- Add loading animation (Done!)
 - Add limited fallback dictionary in case random word API fails

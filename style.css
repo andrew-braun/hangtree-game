@@ -21,6 +21,10 @@
 	box-sizing: border-box;
 }
 
+html {
+	overflow-x: hidden;
+}
+
 body {
 	position: relative;
 	display: flex;
@@ -33,6 +37,7 @@ body {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23183b27' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23ef8a17' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23336a30' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23d56f2d' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%235e9a4a' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23da5929' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23a2c06f' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23cf4935' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23d6daa3' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23c03538' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23e8e3d3' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23b53c52' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
 	background-attachment: fixed;
 	background-size: cover;
+	overflow-x: hidden;
 }
 
 h1,
@@ -67,28 +72,38 @@ button:active {
 	transform: scale(0.98);
 }
 
+/* The main box that contains the SVG and letters */
 .game-container {
 	position: relative;
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"figure incorrect"
+		"word  word";
+	justify-items: center;
 	align-items: center;
-	min-height: 25rem;
 	min-width: 30rem;
+	max-width: 50%;
 	padding: 1rem 2rem;
 	border-radius: 2rem;
-	background: hsla(0, 0%, 0%, 0.2);
+	background: hsla(0, 35%, 61%, 0.2);
 	overflow: hidden;
 }
 
+/* Contains the visual elements and SVG */
 .visual-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
+	width: 100%;
 }
 
 .figure-container {
+	grid-area: figure;
 	display: flex;
 	justify-content: center;
 	margin: 1rem;
-
 	stroke: black;
 	stroke-width: 0.3rem;
 	stroke-linecap: round;
@@ -106,14 +121,16 @@ button:active {
 }
 
 .incorrect-letters-container {
+	grid-area: incorrect;
 	flex: 1 1 auto;
-	align-self: stretch;
-	justify-self: flex-end;
 	display: flex;
 	flex-direction: column;
-	min-width: 13rem;
-	max-width: 50%;
+	min-width: 80%;
+	max-width: 100%;
+	min-height: 15rem;
+	height: 80%;
 	max-height: 20rem;
+	margin-top: 2rem;
 	padding: 1rem;
 	border-radius: 1rem;
 	text-align: center;
@@ -126,11 +143,10 @@ button:active {
 }
 
 .word {
-	position: absolute;
-	bottom: 1rem;
-	left: 50%;
+	grid-area: word;
+	width: 100%;
 	display: flex;
-	transform: translateX(-50%);
+	justify-content: center;
 }
 
 .letter {
@@ -354,5 +370,13 @@ button:active {
 @media (max-width: 600px) {
 	html {
 		font-size: 90%;
+	}
+	.game-container {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"figure"
+			"word"
+			"incorrect";
+		max-width: 100%;
 	}
 }
