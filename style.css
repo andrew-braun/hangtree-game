@@ -310,6 +310,12 @@ button:active {
 	width: 10rem;
 }
 
+#focus-input-field {
+	/* opacity: 0;
+	width: 0;
+	overflow: hidden; */
+}
+
 /* Animations (from animate.css) https://animate.style/ */
 @keyframes bounceInDown {
 	from,
