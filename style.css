@@ -22,6 +22,7 @@
 }
 
 html {
+	height: 100%;
 	overflow-x: hidden;
 }
 
@@ -30,6 +31,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	height: 100%;
 	margin: 0;
 	font-family: "Syne Mono";
 	color: var(--eggplant);
@@ -88,7 +90,10 @@ button:active {
 		"word  word";
 	justify-items: center;
 	align-items: center;
+	margin: auto;
 	min-width: 30rem;
+	max-width: 90%;
+
 	padding: 1rem 2rem;
 	border-radius: 2rem;
 	background: hsla(0, 35%, 61%, 0.2);
@@ -108,6 +113,7 @@ button:active {
 	grid-area: figure;
 	display: flex;
 	justify-content: center;
+	min-width: 10rem;
 	max-width: 50%;
 	margin: 1rem;
 	stroke: black;
@@ -373,9 +379,27 @@ button:active {
 	animation-name: bounceOutDown;
 }
 
+@media (max-width: 800px) {
+	html {
+		font-size: 97%;
+	}
+}
+
+@media (max-width: 700px) {
+	html {
+		font-size: 95%;
+	}
+}
+
+@media (max-width: 700px) {
+	html {
+		font-size: 85%;
+	}
+}
+
 @media (max-width: 600px) {
 	html {
-		font-size: 90%;
+		font-size: 80%;
 	}
 	.game-container {
 		grid-template-columns: 1fr;
@@ -383,9 +407,20 @@ button:active {
 			"figure"
 			"word"
 			"incorrect";
+		min-width: 95%;
 		max-width: 100%;
+		margin: 0;
 	}
 	.figure-container {
-		max-height: min-content;
+		max-height: 12rem;
+	}
+}
+
+@media (max-width: 500px) {
+	html {
+		font-size: 78%;
+	}
+	.figure-container {
+		max-height: 10rem;
 	}
 }
