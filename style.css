@@ -410,15 +410,20 @@ button:active {
 	.game-container {
 		grid-template-columns: 1fr;
 		grid-template-areas:
-			"figure"
-			"word"
-			"incorrect";
+			"figure incorrect"
+			"word word";
 		min-width: 95%;
 		max-width: 100%;
 		margin: 0;
 	}
 	.figure-container {
 		max-height: 12rem;
+	}
+	#incorrect-letters .letter {
+		height: 2rem;
+		width: 1.1rem;
+
+		font-size: 1.5rem;
 	}
 }
 
