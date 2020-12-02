@@ -38,7 +38,7 @@ https://andrew-braun.github.io/hangtree-game/
 - Reveal word on defeat (Done!)
 - Show word definition on game end (Done!)
 - Aesthetic overhaul (In progress)
-- Better mobile experience
+- Better mobile experience (Mostly done)
 - Better tree
 - "Guesses left" counter (Done!)
 - Animations (Added: popup)
