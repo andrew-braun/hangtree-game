@@ -12,6 +12,8 @@ const wordDefinition = document.querySelector("#word-definition");
 const playAgainButton = document.querySelector("#play-again-button");
 const guessesLeftElement = document.querySelector("#guesses-left");
 
+const virtualKeyboardLetters = document.querySelectorAll(".keyboard-key");
+
 const figureParts = document.querySelectorAll(".figure-part");
 
 // Set initial game state
@@ -247,7 +249,10 @@ const showAlreadyGuessedError = () => {
 };
 
 const handleKeyDown = (event) => {
-	const key = event.key.toLowerCase();
+	const key =
+		event.target.tagName === "BUTTON"
+			? event.target.value.toLowerCase()
+			: event.key.toLowerCase();
 
 	// Check that letter is alphabetic
 	if (!/^[a-zA-Z]{1}$/.test(key)) {
@@ -272,4 +277,7 @@ window.addEventListener("keydown", handleKeyDown);
 playAgainButton.addEventListener("click", resetGame);
 window.addEventListener("keypress", (event) =>
 	popupContainerIsOpen && event.key === "Enter" ? resetGame() : null
+);
+virtualKeyboardLetters.forEach((key) =>
+	key.addEventListener("click", handleKeyDown)
 );
