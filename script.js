@@ -249,7 +249,8 @@ const showAlreadyGuessedError = () => {
 };
 
 const handleKeyDown = (event) => {
-	const key =
+	let key = "";
+	key =
 		event.target.tagName === "BUTTON"
 			? event.target.value.toLowerCase()
 			: event.key.toLowerCase();
