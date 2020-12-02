@@ -192,6 +192,7 @@ button:active {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+	margin: 1rem;
 	font-size: 2rem;
 
 	line-height: 3rem;
@@ -201,12 +202,27 @@ button:active {
 	display: flex;
 }
 
-.keyboard-key {
+/* .keyboard-key {
 	width: 3rem;
 	margin: 0.1rem;
 	text-transform: uppercase;
 	letter-spacing: 5px;
+} */
+.keyboard-key {
+	width: 3rem;
+	margin: 0.1rem;
+	padding: 0.7rem 0.5rem;
+	border-radius: 1rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	font-family: "Mono Syne", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
 }
+
+.keyboard-key:hover {
+	text-decoration: none;
+}
+
 /* Notifications */
 
 .popup-container {
