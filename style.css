@@ -185,6 +185,28 @@ button:active {
 	font-size: 1.4rem;
 }
 
+/* Virtual keyboard */
+.virtual-keyboard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-size: 2rem;
+
+	line-height: 3rem;
+}
+
+.keyboard-row {
+	display: flex;
+}
+
+.keyboard-key {
+	width: 3rem;
+	margin: 0.1rem;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
 /* Notifications */
 
 .popup-container {

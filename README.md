@@ -46,3 +46,4 @@ https://andrew-braun.github.io/hangtree-game/
 - Make sure words are commonly-used/easy
 - Add loading animation (Done!)
 - Add limited fallback dictionary in case random word API fails
+- Separate js into different component files
