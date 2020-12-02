@@ -472,13 +472,19 @@ button:active {
 	html {
 		font-size: 80%;
 	}
+	.left-column {
+		height: 60vh;
+	}
+	.right-column {
+		height: 40vh;
+	}
 	.game-container {
 		grid-template-columns: 1fr;
 		grid-template-areas:
 			"figure incorrect"
 			"word word";
 
-		height: 45vh;
+		height: 50vh;
 	}
 	.figure-container {
 		max-height: 12rem;
