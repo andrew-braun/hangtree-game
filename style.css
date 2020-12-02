@@ -30,8 +30,8 @@ body {
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: spacec-around;
-	height: 100%;
+	justify-content: space-around;
+	height: 100vh;
 	margin: 0;
 	font-family: "Syne Mono";
 	color: var(--eggplant);
