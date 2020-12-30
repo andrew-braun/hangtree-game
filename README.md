@@ -34,16 +34,16 @@ https://andrew-braun.github.io/hangtree-game/
 
 ## Planned Features
 
+- Better tree
+- Aesthetic overhaul (In progress)
+- Make sure words are commonly-used/easy
+- Add limited fallback dictionary in case random word API fails
+- Separate js into different component files
 - Random word API (Done!)
 - Reveal word on defeat (Done!)
 - Show word definition on game end (Done!)
-- Aesthetic overhaul (In progress)
 - Better mobile experience (Mostly done)
-- Better tree
 - "Guesses left" counter (Done!)
 - Animations (Added: popup)
 - Play again responds to enter key press (Done!)
-- Make sure words are commonly-used/easy
 - Add loading animation (Done!)
-- Add limited fallback dictionary in case random word API fails
-- Separate js into different component files

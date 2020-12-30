@@ -214,6 +214,60 @@ button:active {
 	font-size: 1.4rem;
 }
 
+/* SVG Tree */
+.figure-container {
+	--size: auto;
+	--tree: #a50;
+	--leaf: #5b5;
+}
+
+.tree {
+	fill: var(--tree);
+}
+
+.leaf-1 {
+	fill: var(--leaf);
+	filter: brightness(0.95);
+}
+.leaf-2 {
+	fill: var(--leaf);
+	filter: brightness(0.9);
+}
+.leaf-3 {
+	fill: var(--leaf);
+	filter: brightness(0.88);
+}
+.leaf-4 {
+	fill: var(--leaf);
+	filter: brightness(0.86);
+}
+.leaf-5 {
+	fill: var(--leaf);
+	filter: brightness(0.84);
+}
+.leaf-6 {
+	fill: var(--leaf);
+	filter: brightness(0.82);
+}
+.leaf-7 {
+	fill: var(--leaf);
+	filter: brightness(0.8);
+}
+.leaf-8 {
+	fill: var(--leaf);
+	filter: brightness(0.78);
+}
+.leaf-9 {
+	fill: var(--leaf);
+	filter: brightness(0.76);
+}
+.leaf-10 {
+	fill: var(--leaf);
+}
+.leaf-11 {
+	fill: var(--leaf);
+}
+
 /* Virtual keyboard */
 .virtual-keyboard {
 	display: flex;
