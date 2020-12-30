@@ -200,9 +200,7 @@ const addStrokes = () => {
 	figureParts.forEach((part, index) => {
 		const incorrectCount = incorrectLetters.length;
 		if (index < incorrectCount) {
-			part.style.display = "block";
-		} else {
-			part.style.display = "none";
+			part.classList.add("hidden");
 		}
 	});
 };
@@ -216,7 +214,7 @@ const resetGame = () => {
 	popup.classList.remove("bounceInDown");
 	popup.classList.add("bounceOutDown");
 	setTimeout(() => (popupContainer.style.display = "none"), 500);
-	figureParts.forEach((part) => (part.style.display = "none"));
+	figureParts.forEach((part) => part.classList.remove("hidden"));
 	setIncorrectLetters();
 	setUp();
 };
